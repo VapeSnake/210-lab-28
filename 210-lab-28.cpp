@@ -18,7 +18,7 @@ void shuffle_trip(list<Goat> &trip); // Added new function prototypes for our ne
 void reverse_trip(list<Goat> &trip);
 void goat_birthday(list<Goat> &trip);
 void find_goat_by_name(list<Goat> trip);
-void copy_trip(list<Goat> trip, list<Goat> &clone);
+void copy_trip(const list<Goat> &trip, list<Goat> &clone);
 void unique_trip(list<Goat> &trip);
 void reset_trip(list<Goat> &trip);
 void remove_goats_by_age(list<Goat> &trip, int age);
@@ -91,10 +91,10 @@ int main() {
 
             case 8:
                 cout << "Copying list of goats.\n";
-                list<Goat> clone; // Create a new list to hold the copied goats.
-                copy_trip(trip, clone); // Copy goats from trip to clone.
+                list<Goat> copy; // Create a new list to hold the copied goats.
+                copy_trip(trip, copy); // Copy goats from trip to copy.
                 cout << "Copied trip:\n";
-                display_trip(clone); // Display the copied trip to verify it worked.
+                display_trip(copy); // Display the copied trip to verify it worked.
                 break;
                 /*
             case 9:
@@ -237,6 +237,7 @@ void find_goat_by_name(list<Goat> trip) {
     }    
 }
 
-void copy_trip(list<Goat> trip, list<Goat> &copy) {
-    copy.assign(trip.begin(), trip.end()); // Copy the goats from the original trip to the clone list using assign which is more efficient for lists.
+void copy_trip(const list<Goat> &trip, list<Goat> &clone) {
+    clone.clear(); // Clear the clone list before copying to avoid appending to existing data.
+    copy(trip.begin(), trip.end(), back_inserter(clone)); // Use std::copy to copy goats from trip to clone list. back_inserter is used to insert elements at the end of the clone list.
 }
