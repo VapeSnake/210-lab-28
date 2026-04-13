@@ -78,16 +78,17 @@ int main() {
                 cout << "Reversing goats.\n";
                 reverse_trip(trip);
                 break;
-                /*
+
             case 6:
                 cout << "Goat birthday (incrementing age).\n";
                 goat_birthday(trip);
                 break;
+
             case 7:
                 cout << "Finding goat by name.\n";
                 find_goat_by_name(trip);
                 break;
-                
+                /*
             case 8:
                 cout << "Copying list of goats.\n";
                 list<Goat> copy;
@@ -221,4 +222,17 @@ void goat_birthday(list<Goat> &trip) {
     for (const auto& goat : trip) {
         cout << goat.get_name() << " (" << goat.get_age() << ", " << goat.get_color() << ")\n";
     }
+}
+
+void find_goat_by_name(list<Goat> trip) {
+    string nameToFind; // Get the name of the goat to find from the user.
+    cout << "Enter name of goat to find: ";
+    cin >> nameToFind;
+    // Use std::find to search for goat with name.
+    auto it = find(trip.begin(), trip.end(), nameToFind); // We can create a temporary object with the name to compare since we defined operator< based on name in Goat.h.
+    if (it != trip.end()) { 
+        cout << "Goat found: " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")\n";
+    } else {
+        cout << "Goat not found. Better go find them!\n";
+    }    
 }
