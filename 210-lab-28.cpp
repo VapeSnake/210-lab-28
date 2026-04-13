@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <algorithm>
 #include "Goat.h"
 using namespace std;
 
@@ -69,17 +70,25 @@ int main() {
 
     return 0;
 }
-
+// Now adding 8 more features of <algorithm>
 int main_menu() {
     cout << "*** GOAT MANAGER 3001 ***\n";
     cout << "[1] Add a goat\n";
     cout << "[2] Delete a goat\n";
     cout << "[3] List goats\n";
-    cout << "[4] Quit\n";
+    cout << "[4] Shuffle goats\n"; // uses std::shuffle.
+    cout << "[5] Reverse goats\n"; // uses std::reverse.
+    cout << "[6] Goat Birthday (increment age)\n"; // uses std::for_each.
+    cout << "[7] Find goat by name\n"; // uses std::find.
+    cout << "[8] Copy list of goats\n"; // uses std::copy.
+    cout << "[9] Make list unique (remove duplicates)\n"; // uses std::unique.
+    cout << "[10] Reset trip (clear list)\n"; // uses std::clear.
+    cout << "[11] Remove goats by age\n"; // uses std::remove and std::erase.
+    cout << "[12] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 4) {
+    while (choice < 1 || choice > 12) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
