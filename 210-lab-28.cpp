@@ -20,7 +20,6 @@ void goat_birthday(list<Goat> &trip);
 void find_goat_by_name(list<Goat> trip);
 void copy_trip(const list<Goat> &trip, list<Goat> &clone);
 void unique_trip(list<Goat> &trip);
-void reset_trip(list<Goat> &trip);
 void remove_goats_by_age(list<Goat> &trip, int age);
 int main_menu();
 
@@ -128,19 +127,30 @@ int main()
             cout << "Trip after making unique:\n";
             display_trip(trip); // Display the trip after making unique to show the duplicates are removed.
             break;
-            /*
+
         case 10:
             cout << "Resetting trip (clearing list).\n";
-            reset_trip(trip);
+            cout << "Trip before reset:\n";
+            display_trip(trip);
+            trip.clear(); // Clear the list to reset the trip.
+            cout << "Trip after reset:\n";
+            display_trip(trip); // Display the trip after clearing to show it's empty.
+            cout << trip.size() << " goats remain in the trip.\n"; // Display the size of the trip to confirm it's 0 after clearing.
             break;
+
         case 11:
+            cout << "Trip before removing goats by age:\n";
+            display_trip(trip);
             cout << "Removing goats by age.\n";
             int ageToRemove;
             cout << "Enter age to remove: ";
             cin >> ageToRemove;
             remove_goats_by_age(trip, ageToRemove);
+            cout << "Goats removed. New trip size: " << trip.size() << endl;
+            cout << "Trip after removing goats by age:\n";
+            display_trip(trip);
             break;
-            */
+
         default:
             cout << "Invalid selection.\n";
             break;
@@ -294,4 +304,11 @@ void unique_trip(list<Goat> &trip)
     trip.sort();                                // Sort the list first since std::unique only removes adjacent duplicates.
     auto it = unique(trip.begin(), trip.end()); // Use std::unique to remove duplicates based on the overloaded == operator in the Goat class.
     trip.erase(it, trip.end());                 // Erase the "removed" elements from the list
+}
+
+void remove_goats_by_age(list<Goat> &trip, int age)
+{
+    auto it = remove_if(trip.begin(), trip.end(), [age](const Goat &g)
+                         { return g.get_age() == age; }); // Use std::remove_if with a lambda function to identify goats of the specified age.
+    trip.erase(it, trip.end()); // Erase the "removed" elements from the list with std::erase.
 }
