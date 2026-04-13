@@ -212,3 +212,13 @@ void reverse_trip(list<Goat> &trip) {
         cout << goat.get_name() << " (" << goat.get_age() << ", " << goat.get_color() << ")\n";
     }
 }
+
+void goat_birthday(list<Goat> &trip) {
+    for_each(trip.begin(), trip.end(), [](Goat &g) { g.set_age(g.get_age() + 1); }); // Increment age of each goat by 1 using a lambda function.
+   //Assuming all our goats have the same birthday but different years to show this feature.
+
+    //display the updated trip
+    for (const auto& goat : trip) {
+        cout << goat.get_name() << " (" << goat.get_age() << ", " << goat.get_color() << ")\n";
+    }
+}
