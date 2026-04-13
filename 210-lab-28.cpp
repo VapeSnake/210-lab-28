@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <list>
 #include <algorithm>
+#include <random>
 #include "Goat.h"
 using namespace std;
 
@@ -13,6 +14,14 @@ int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
+void shuffle_trip(list<Goat> &trip); // Added new function prototypes for our new algorithm functions.
+void reverse_trip(list<Goat> &trip);
+void goat_birthday(list<Goat> &trip);
+void find_goat_by_name(list<Goat> trip);
+void copy_trip(list<Goat> trip, list<Goat> &copy);
+void unique_trip(list<Goat> &trip);
+void reset_trip(list<Goat> &trip);
+void remove_goats_by_age(list<Goat> &trip, int age);
 int main_menu();
 
 int main() {
@@ -60,6 +69,11 @@ int main() {
                 cout << "Displaying goat data.\n";
                 display_trip(trip);
                 break;
+            case 4:
+                cout << "Shuffling goats.\n";
+                shuffle_trip(trip);
+                break;
+                
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -135,4 +149,17 @@ int select_goat(list<Goat> trp) {
         cin >> input;
     }
     return input;
+}
+
+void shuffle_trip(list<Goat> &trip) {
+    vector<Goat> temp(trip.begin(), trip.end()); // Copy the list to a vector for shuffling since std::shuffle works with random access iterators.
+    random_device random;
+    mt19937 g(random()); // Initialize a random number generator.
+    shuffle(temp.begin(), temp.end(), g);
+    trip.assign(temp.begin(), temp.end());
+
+    //display the shuffled trip
+    for (const auto& goat : trip) {
+        cout << goat.get_name() << " (" << goat.get_age() << ", " << goat.get_color() << ")\n";
+    }
 }
