@@ -18,7 +18,7 @@ void shuffle_trip(list<Goat> &trip); // Added new function prototypes for our ne
 void reverse_trip(list<Goat> &trip);
 void goat_birthday(list<Goat> &trip);
 void find_goat_by_name(list<Goat> trip);
-void copy_trip(list<Goat> trip, list<Goat> &copy);
+void copy_trip(list<Goat> trip, list<Goat> &clone);
 void unique_trip(list<Goat> &trip);
 void reset_trip(list<Goat> &trip);
 void remove_goats_by_age(list<Goat> &trip, int age);
@@ -88,15 +88,15 @@ int main() {
                 cout << "Finding goat by name.\n";
                 find_goat_by_name(trip);
                 break;
-                /*
+
             case 8:
                 cout << "Copying list of goats.\n";
-                list<Goat> copy;
-                copy_trip(trip, copy);
+                list<Goat> clone; // Create a new list to hold the copied goats.
+                copy_trip(trip, clone); // Copy goats from trip to clone.
                 cout << "Copied trip:\n";
-                display_trip(copy);
+                display_trip(clone); // Display the copied trip to verify it worked.
                 break;
-                
+                /*
             case 9:
                 cout << "Making list unique (removing duplicates).\n";
                 unique_trip(trip);
@@ -235,4 +235,8 @@ void find_goat_by_name(list<Goat> trip) {
     } else {
         cout << "Goat not found. Better go find them!\n";
     }    
+}
+
+void copy_trip(list<Goat> trip, list<Goat> &copy) {
+    copy.assign(trip.begin(), trip.end()); // Copy the goats from the original trip to the clone list using assign which is more efficient for lists.
 }
