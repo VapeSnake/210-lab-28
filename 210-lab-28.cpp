@@ -55,7 +55,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 4) {
+    while (sel != 12) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -73,7 +73,44 @@ int main() {
                 cout << "Shuffling goats.\n";
                 shuffle_trip(trip);
                 break;
+                 /*
+            case 5:
+                cout << "Reversing goats.\n";
+                reverse_trip(trip);
+                break;
+            case 6:
+                cout << "Goat birthday (incrementing age).\n";
+                goat_birthday(trip);
+                break;
+            case 7:
+                cout << "Finding goat by name.\n";
+                find_goat_by_name(trip);
+                break;
+                /*
+            case 8:
+                cout << "Copying list of goats.\n";
+                list<Goat> copy;
+                copy_trip(trip, copy);
+                cout << "Copied trip:\n";
+                display_trip(copy);
+                break;
                 
+            case 9:
+                cout << "Making list unique (removing duplicates).\n";
+                unique_trip(trip);
+                break;
+            case 10:
+                cout << "Resetting trip (clearing list).\n";
+                reset_trip(trip);
+                break;
+            case 11:
+                cout << "Removing goats by age.\n";
+                int ageToRemove;
+                cout << "Enter age to remove: ";
+                cin >> ageToRemove;
+                remove_goats_by_age(trip, ageToRemove);
+                break;
+                */
             default:
                 cout << "Invalid selection.\n";
                 break;
