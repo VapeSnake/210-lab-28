@@ -52,6 +52,7 @@ int main() {
         Goat tmp(name, age, color);
         trip.push_back(tmp);
     }
+    list<Goat> trip2; // Create an empty list to hold a copy of the trip for the copy feature.
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
@@ -90,11 +91,13 @@ int main() {
                 break;
 
             case 8:
-                cout << "Copying list of goats.\n";
-                list<Goat> copy; // Create a new list to hold the copied goats.
-                copy_trip(trip, copy); // Copy goats from trip to copy.
-                cout << "Copied trip:\n";
-                display_trip(copy); // Display the copied trip to verify it worked.
+                cout << "Displaying trip2 list of goats.\n";
+                cout << "Before copying, trip2 is:\n";
+                display_trip(trip2); // Display the empty trip2 to show it's empty before copying
+                cout << "Copying trip to trip2.\n";
+                copy_trip(trip, trip2); // Copy goats from trip to trip2.
+                cout << "Copied trip, now displaying trip2:\n";
+                display_trip(trip2); // Display the copied trip to verify it worked.
                 break;
                 /*
             case 9:
@@ -120,7 +123,6 @@ int main() {
         sel = main_menu();
     }
     
-
     return 0;
 }
 // Now adding 8 more features of <algorithm>
@@ -239,5 +241,5 @@ void find_goat_by_name(list<Goat> trip) {
 
 void copy_trip(const list<Goat> &trip, list<Goat> &clone) {
     clone.clear(); // Clear the clone list before copying to avoid appending to existing data.
-    copy(trip.begin(), trip.end(), back_inserter(clone)); // Use std::copy to copy goats from trip to clone list. back_inserter is used to insert elements at the end of the clone list.
+    copy(trip.begin(), trip.end(), back_inserter(clone)); // Use std::copy with back_inserter to copy goats from trip to clone.
 }
