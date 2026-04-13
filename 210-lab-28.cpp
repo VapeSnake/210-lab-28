@@ -132,7 +132,7 @@ int main_menu() {
     cout << "[4] Shuffle goats\n"; // uses std::shuffle.
     cout << "[5] Reverse goats\n"; // uses std::reverse.
     cout << "[6] Goat Birthday (increment age)\n"; // uses std::for_each.
-    cout << "[7] Find goat by name\n"; // uses std::find.
+    cout << "[7] Find goat by name\n"; // uses std::find_if and a lambda function.
     cout << "[8] Copy list of goats\n"; // uses std::copy.
     cout << "[9] Make list unique (remove duplicates)\n"; // uses std::unique.
     cout << "[10] Reset trip (clear list)\n"; // uses std::clear.
@@ -228,8 +228,8 @@ void find_goat_by_name(list<Goat> trip) {
     string nameToFind; // Get the name of the goat to find from the user.
     cout << "Enter name of goat to find: ";
     cin >> nameToFind;
-    // Use std::find to search for goat with name.
-    auto it = find(trip.begin(), trip.end(), nameToFind); // We can create a temporary object with the name to compare since we defined operator< based on name in Goat.h.
+    // Use std::find_if to search for goat with name. // Lamda function to compare goat's (object's) name with the name to find (string).
+    auto it = find_if(trip.begin(), trip.end(), [&nameToFind](const Goat &g) { return g.get_name() == nameToFind; });
     if (it != trip.end()) { 
         cout << "Goat found: " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")\n";
     } else {
