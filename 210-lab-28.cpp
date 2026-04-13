@@ -73,11 +73,12 @@ int main() {
                 cout << "Shuffling goats.\n";
                 shuffle_trip(trip);
                 break;
-                 /*
+
             case 5:
                 cout << "Reversing goats.\n";
                 reverse_trip(trip);
                 break;
+                /*
             case 6:
                 cout << "Goat birthday (incrementing age).\n";
                 goat_birthday(trip);
@@ -86,7 +87,7 @@ int main() {
                 cout << "Finding goat by name.\n";
                 find_goat_by_name(trip);
                 break;
-                /*
+                
             case 8:
                 cout << "Copying list of goats.\n";
                 list<Goat> copy;
@@ -196,6 +197,17 @@ void shuffle_trip(list<Goat> &trip) {
     trip.assign(temp.begin(), temp.end());
 
     //display the shuffled trip
+    for (const auto& goat : trip) {
+        cout << goat.get_name() << " (" << goat.get_age() << ", " << goat.get_color() << ")\n";
+    }
+}
+
+void reverse_trip(list<Goat> &trip) {
+    vector<Goat> temp(trip.begin(), trip.end()); // Copy the list to a vector for reversing since std::reverse works with random access iterators.
+    reverse(temp.begin(), temp.end());      // NOTE: <list> has its own reverse() function which is more efficient for lists.
+    trip.assign(temp.begin(), temp.end());
+
+    //display the reversed trip
     for (const auto& goat : trip) {
         cout << goat.get_name() << " (" << goat.get_age() << ", " << goat.get_color() << ")\n";
     }
