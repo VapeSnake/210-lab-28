@@ -99,11 +99,22 @@ int main() {
                 cout << "Copied trip, now displaying trip2:\n";
                 display_trip(trip2); // Display the copied trip to verify it worked.
                 break;
-                /*
+                
             case 9:
+                cout << "Naming half of goats in list to Joe.\n";
+                int count = 0; // Creating duplicates to demonstrate the unique feature.
+                for (auto &goat : trip) {
+                    if (count < trip.size() / 2) {
+                        goat.set_name("Joe");
+                    }
+                    count++;
+                }
+                cout << "Trip before making unique:\n";
+                display_trip(trip); // Display the trip with duplicates to show the effect of unique.
                 cout << "Making list unique (removing duplicates).\n";
                 unique_trip(trip);
                 break;
+                /*
             case 10:
                 cout << "Resetting trip (clearing list).\n";
                 reset_trip(trip);
@@ -242,4 +253,10 @@ void find_goat_by_name(list<Goat> trip) {
 void copy_trip(const list<Goat> &trip, list<Goat> &clone) {
     clone.clear(); // Clear the clone list before copying to avoid appending to existing data.
     copy(trip.begin(), trip.end(), back_inserter(clone)); // Use std::copy with back_inserter to copy goats from trip to clone.
+}
+
+void unique_trip(list<Goat> &trip) {
+    trip.sort(); // Sort the list first since std::unique only removes adjacent duplicates.
+    auto it = unique(trip.begin(), trip.end()); // Use std::unique to remove duplicates based on the overloaded == operator in the Goat class.
+    trip.erase(it, trip.end()); // Erase the "removed" elements from the list
 }
